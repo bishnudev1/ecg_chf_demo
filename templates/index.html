@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CHF Detection Demo</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f5f5f5;
+            padding: 40px;
+        }
+        .box {
+            background: white;
+            padding: 20px;
+            max-width: 500px;
+            margin: auto;
+            border-radius: 6px;
+        }
+        h2 {
+            text-align: center;
+        }
+        input, button {
+            width: 100%;
+            margin-top: 10px;
+            padding: 8px;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background: #eef;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h2>CHF Detection using ECG</h2>
+
+    <form method="POST" action="/predict" enctype="multipart/form-data">
+        <label>Upload ECG Signal (.csv or .txt)</label>
+        <input type="file" name="ecg_file" required>
+        <button type="submit">Predict</button>
+    </form>
+
+    {% if result %}
+    <div class="result">
+        <p><b>SVM:</b> {{ result.svm }}</p>
+        <p><b>Random Forest:</b> {{ result.rf }}</p>
+        <p><b>Final Prediction:</b> {{ result.final }}</p>
+    </div>
+    {% endif %}
+</div>
+
+</body>
+</html>
